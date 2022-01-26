@@ -8,3 +8,6 @@ __pycache__/
 
 # JetBrains
 .idea/
+
+# Local config
+/backend/.env
