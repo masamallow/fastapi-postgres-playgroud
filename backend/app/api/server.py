@@ -6,9 +6,9 @@ from app.core import config, tasks
 
 
 def get_application():
-    app = FastAPI(title=config.PROJECT_NAME, version=config.VERSION)
+    app_api = FastAPI(title=config.PROJECT_NAME, version=config.VERSION)
 
-    app.add_middleware(
+    app_api.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
         allow_credentials=True,
@@ -16,12 +16,13 @@ def get_application():
         allow_headers=["*"],
     )
 
-    app.add_event_handler("startup", tasks.create_start_app_handler(app))
-    app.add_event_handler("shutdown", tasks.create_stop_app_handler(app))
+    app_api.add_event_handler("startup", tasks.create_start_app_handler(app_api))
+    app_api.add_event_handler("shutdown", tasks.create_stop_app_handler(app_api))
 
-    app.include_router(api_router, prefix="/api")
+    app_api.include_router(api_router, prefix="/api")
 
-    return app
+    return app_api
 
 
+# if __name__ == '__main__': 内で処理させた方が良いように思う (動作検証していない)
 app = get_application()
