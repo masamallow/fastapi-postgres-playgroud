@@ -22,6 +22,7 @@ async def connect_to_db(app: FastAPI) -> None:
 
 async def close_db_connection(app: FastAPI) -> None:
     try:
+        # TODO Modify; protected memberへのアクセス
         await app.state._db.disconnect()
     except Exception as e:
         logger.warning("--- DATABASE DISCONNECT ERROR ---")
