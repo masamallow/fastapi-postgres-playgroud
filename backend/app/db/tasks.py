@@ -15,15 +15,15 @@ async def connect_to_db(app: FastAPI) -> None:
         await database.connect()
         app.state._db = database
     except Exception as e:
-        logger.warn("--- DATABASE CONNECTION ERROR ---")
-        logger.warn(e)
-        logger.warn("--- DATABASE CONNECTION ERROR ---")
+        logger.warning("--- DATABASE CONNECTION ERROR ---")
+        logger.warning(e)
+        logger.warning("--- DATABASE CONNECTION ERROR ---")
 
 
 async def close_db_connection(app: FastAPI) -> None:
     try:
         await app.state._db.disconnect()
     except Exception as e:
-        logger.warn("--- DATABASE DISCONNECT ERROR ---")
-        logger.warn(e)
-        logger.warn("--- DATABASE DISCONNECT ERROR ---")
+        logger.warning("--- DATABASE DISCONNECT ERROR ---")
+        logger.warning(e)
+        logger.warning("--- DATABASE DISCONNECT ERROR ---")
