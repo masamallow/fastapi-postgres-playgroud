@@ -5,7 +5,7 @@ from starlette.status import HTTP_201_CREATED
 
 from app.api.dependencies.database import get_repository
 from app.db.repositories.hedgehogs import HedgehogsRepository
-from app.models.hedgehog import HedgehogCreate, HedgehogPublic
+from app.models.hedgehog import HedgehogCreate, HedgehogPublic, HedgehogInDB
 
 router = APIRouter()
 
@@ -27,6 +27,6 @@ async def get_all_hedgehogs() -> List[dict]:
 async def create_new_hedgehog(
         new_hedgehog: HedgehogCreate = Body(..., embed=True),
         hedgehogs_repo: HedgehogsRepository = Depends(get_repository(HedgehogsRepository)),
-) -> HedgehogPublic:
+) -> HedgehogInDB:
     created_hedgehog = await hedgehogs_repo.create_hedgehog(new_hedgehog=new_hedgehog)
     return created_hedgehog

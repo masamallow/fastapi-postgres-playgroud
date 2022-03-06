@@ -9,7 +9,7 @@ CREATE_HEDGEHOG_QUERY = """
 
 
 class HedgehogsRepository(BaseRepository):
-    async def create_cleaning(self, *, new_hedgehog: HedgehogCreate) -> HedgehogInDB:
+    async def create_hedgehog(self, *, new_hedgehog: HedgehogCreate) -> HedgehogInDB:
         query_values = new_hedgehog.dict()
         hedgehog = await self.db.fetch_one(query=CREATE_HEDGEHOG_QUERY, values=query_values)
 
