@@ -5,9 +5,9 @@ from logging.config import fileConfig
 import alembic
 from sqlalchemy import engine_from_config, pool
 
-sys.path.append(str(pathlib.Path(__file__).resolve().parents[3]))
 from app.core.config import DATABASE_URL
 
+sys.path.append(str(pathlib.Path(__file__).resolve().parents[3]))
 config = alembic.context.config
 fileConfig(config.config_file_name)
 config.set_main_option("sqlalchemy.url", str(DATABASE_URL))
